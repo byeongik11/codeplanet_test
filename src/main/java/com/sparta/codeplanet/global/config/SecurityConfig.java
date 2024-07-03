@@ -40,7 +40,7 @@ public class SecurityConfig {
     private final AuthenticationConfiguration authenticationConfiguration;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-    private final String[] WHITE_LIST = {"/users", "/user/login", "/feed/**"};
+    private final String[] WHITE_LIST = {"/users", "/user/login", "/feed/**", "/reply/**"};
 
     /**
      * 암호화 매서드 빈 주입
@@ -85,7 +85,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(requests ->
                         requests.requestMatchers("/users", "/users/login", "/email/**").permitAll()	// requestMatchers의 인자로 전달된 url은 모두에게 허용
-                                .requestMatchers(HttpMethod.GET, "/feed/**").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/reply/**").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/feed/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/users/{userId}/follower").permitAll() // 팔로워 조회
                                 .requestMatchers(HttpMethod.GET, "/users/{userId}/following").permitAll() // 팔로잉 조회
                                 .requestMatchers(HttpMethod.GET, "/feed/{{feedId}}/reply").permitAll() // 댓글 조회

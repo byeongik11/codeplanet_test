@@ -26,6 +26,11 @@ Content-Type: application/json
   client.global.set("refreshToken", response.headers.valueOf("refreshToken"));
 %}
 
+### 회원 프로필 조회(게시글 수/댓글 수 응답필드 추가)
+GET http://localhost:8080/users
+accessToken: {{accessToken}}
+Content-Type: application/json
+
 ### 회원 프로필 수정
 PUT http://localhost:8080/users
 accessToken: {{accessToken}}

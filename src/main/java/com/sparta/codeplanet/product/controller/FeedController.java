@@ -63,7 +63,7 @@ public class FeedController {
     }
     
     /**
-     * 게시물 조회
+     * 게시물 수정
      * @param requestDto 게시물 정보
      * @return 게시물 수정 내용 반환
      */

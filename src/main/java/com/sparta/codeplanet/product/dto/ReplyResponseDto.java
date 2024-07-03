@@ -26,4 +26,15 @@ public class ReplyResponseDto {
         this.likeCount = reply.getLikesCount();
     }
 
+    public ReplyResponseDto(long id, String content, long feedId, long userId,
+        LocalDateTime createdAt,
+        LocalDateTime updatedAt, int likeCount) {
+        this.id = id;
+        this.content = content;
+        this.feedId = feedId;
+        this.userId = userId;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.likeCount = likeCount;
+    }
 }

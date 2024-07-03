@@ -1,5 +1,5 @@
 ## Variables
-@feedId = 1
+@feedId = 2
 @replyId = 1
 
 ### 피드 좋아요 추가
@@ -17,3 +17,12 @@ accessToken: {{accessToken}}
 ### 댓글 좋아요 삭제
 DELETE http://localhost:8080/feed/{{feedId}}/reply/{{replyId}}/likes
 accessToken: {{accessToken}}
+
+### 좋아요 한 게시글 목록 조회
+GET http://localhost:8080/feed/liked?page=0&size=5
+accessToken: {{accessToken}}
+
+### 좋아요 한 댓글 목록 조회
+GET http://localhost:8080/reply/liked?page=0&size=5
+accessToken: {{accessToken}}
+Content-Type: application/json

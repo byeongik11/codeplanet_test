@@ -29,3 +29,4 @@ Content-Type: application/json
 ### 댓글 삭제
 DELETE http://localhost:8080/feed/{{feedId}}/reply/{{replyId}}
 accessToken: {{accessToken}}
+

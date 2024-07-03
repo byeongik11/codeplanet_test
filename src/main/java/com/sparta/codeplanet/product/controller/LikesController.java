@@ -3,9 +3,18 @@ package com.sparta.codeplanet.product.controller;
 import com.sparta.codeplanet.global.enums.ResponseMessage;
 import com.sparta.codeplanet.global.security.UserDetailsImpl;
 import com.sparta.codeplanet.product.dto.ResponseEntityDto;
+import com.sparta.codeplanet.product.entity.Feed;
+import com.sparta.codeplanet.product.entity.QFeed;
+import com.sparta.codeplanet.product.entity.likes.QFeedLikes;
 import com.sparta.codeplanet.product.service.LikesService;
+import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

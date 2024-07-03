@@ -5,8 +5,10 @@ import com.sparta.codeplanet.global.enums.Status;
 import com.sparta.codeplanet.global.exception.CustomException;
 import com.sparta.codeplanet.product.dto.SignupRequestDto;
 import com.sparta.codeplanet.product.dto.UpdatePasswordReq;
+import com.sparta.codeplanet.product.dto.UserInfoDto;
 import com.sparta.codeplanet.product.entity.User;
 import com.sparta.codeplanet.product.entity.UserPasswordLog;
+import com.sparta.codeplanet.product.repository.CustomUserRepository;
 import com.sparta.codeplanet.product.repository.UserPasswordLogRepersitory;
 import com.sparta.codeplanet.product.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -26,6 +28,7 @@ public class UserService {
     private final UserPasswordLogRepersitory userPasswordLogRepersitory;
     private final CompanyService companyService;
     private final PasswordEncoder passwordEncoder;
+    private final CustomUserRepository customUserRepository;
 
     @Transactional
     public User signup(SignupRequestDto requestDto) {
@@ -147,4 +150,9 @@ public class UserService {
         return userRepository.findById(userId).orElseThrow(
                 ()-> new CustomException(ErrorType.NOT_FOUND_USER));
     }
+
+    public UserInfoDto getUserProfile(Long userId) {
+        return customUserRepository.findUserInfoById(userId);
+    }
+
 }

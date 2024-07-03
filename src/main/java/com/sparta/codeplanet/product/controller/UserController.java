@@ -32,4 +32,9 @@ public class UserController {
         return ResponseEntity.ok("Password updated");
     }
 
+    @GetMapping
+    public ResponseEntity<?> getUserProfile(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return ResponseEntity.ok(userService.getUserProfile(userDetails.getUser().getId()));
+    }
+
 }

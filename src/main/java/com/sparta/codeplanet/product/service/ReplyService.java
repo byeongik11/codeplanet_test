@@ -7,9 +7,14 @@ import com.sparta.codeplanet.product.dto.ReplyResponseDto;
 import com.sparta.codeplanet.product.entity.Feed;
 import com.sparta.codeplanet.product.entity.Reply;
 import com.sparta.codeplanet.product.entity.User;
+import com.sparta.codeplanet.product.repository.CustomLikedReplyRepository;
 import com.sparta.codeplanet.product.repository.FeedRepository;
 import com.sparta.codeplanet.product.repository.ReplyRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +26,7 @@ public class ReplyService {
 
     private final ReplyRepository replyRepository;
     private final FeedRepository feedRepository;
+    private final CustomLikedReplyRepository customLikedReplyRepository;
 
     public ReplyResponseDto createReply(long feedId, ReplyRequestDto replyRequestDto, User user) {
         Feed feed = feedRepository.findById(feedId)
@@ -64,4 +70,8 @@ public class ReplyService {
                 .toList();
     }
 
+    public Page<ReplyResponseDto> getLikedReplysByUser(Long userId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
+        return customLikedReplyRepository.findLikedReplysByUser(userId, pageable);
+    }
 }

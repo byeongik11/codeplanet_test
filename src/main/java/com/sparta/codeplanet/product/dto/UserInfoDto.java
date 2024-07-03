@@ -15,6 +15,8 @@ public class UserInfoDto {
     private String intro;
     private UserRole role;
     private Status status;
+    private int likedFeedsCount;
+    private int likedReplysCount;
 
     public UserInfoDto(User user) {
         this.userId = user.getId();
@@ -24,5 +26,18 @@ public class UserInfoDto {
         this.intro = user.getIntro();
         this.role = user.getUserRole();
         this.status = user.getStatus();
+    }
+
+    public UserInfoDto(Long userId, String companyName, String email, String nickname, String intro,
+        UserRole role, Status status, int likedFeedsCount, int likedReplysCount) {
+        this.userId = userId;
+        this.companyName = companyName;
+        this.email = email;
+        this.nickname = nickname;
+        this.intro = intro;
+        this.role = role;
+        this.status = status;
+        this.likedFeedsCount = likedFeedsCount;
+        this.likedReplysCount = likedReplysCount;
     }
 }
